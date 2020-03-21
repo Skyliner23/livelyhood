@@ -1,18 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      LIVELYHOOD
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/home']">
+        Start
+      </ion-button>
+      <ion-button [routerLink]="['/search']">
+        Suche
+      </ion-button>
+      <ion-button [routerLink]="['/team']">
+        Team
+      </ion-button>
+      <ion-button [routerLink]="['/about']">
+        Über uns
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
-  <!-- TODO push into main css-->
-  <!--
-  <head>
-    <title>LIVELYHOOD - connect to share, for a happier community</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="icon" type="image/png" sizes="192x192"  href="images/icon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/icon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
-  </head>
--->
+  <section>
+
     <div id="page-wrapper">
   
       <!-- Header -->
@@ -43,56 +54,6 @@
                 <li><a href="#" class="button big icon fa-arrow-circle-right">Ich möchte kaufen</a></li>
                 <li><a href="#" class="button alt big icon fa-arrow-circle-right">Ich möchte verkaufen</a></li>
               </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Features -->
-      <div id="features-wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="4u 12u(medium)">
-              <!-- Box -->
-              <section class="box feature">
-                <a href="#" class="image featured"><img src="assets/images/pic01.jpg" alt="" /></a>
-                <div class="inner">
-                  <header>
-                    <h2>Cep consequat urna</h2>
-                    <p>Augue ante at nisl mus magna</p>
-                  </header>
-                  <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper
-                    amet bibendum tristique fringilla.</p>
-                </div>
-              </section>
-            </div>
-            <div class="4u 12u(medium)">
-              <!-- Box -->
-              <section class="box feature">
-                <a href="#" class="image featured"><img src="assets/images/pic02.jpg" alt="" /></a>
-                <div class="inner">
-                  <header>
-                    <h2>At condimentum neque</h2>
-                    <p>Diam at quam ut condimentum eleifend</p>
-                  </header>
-                  <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper
-                    amet bibendum tristique fringilla.</p>
-                </div>
-              </section>
-            </div>
-            <div class="4u 12u(medium)">
-              <!-- Box -->
-              <section class="box feature">
-                <a href="#" class="image featured"><img src="assets/images/pic03.jpg" alt="" /></a>
-                <div class="inner">
-                  <header>
-                    <h2>Sit, non blandit est.</h2>
-                    <p>Sociis cubilia adipiscing interdum</p>
-                  </header>
-                  <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper
-                    amet bibendum tristique fringilla.</p>
-                </div>
-              </section>
             </div>
           </div>
         </div>
@@ -130,4 +91,7 @@
   
     </div>
   
+  </section>
+
 </ion-content>
+
