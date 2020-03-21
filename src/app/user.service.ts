@@ -113,37 +113,4 @@ export class UserService {
   logout() {
     return this.afAuth.auth.signOut();
   }
-
-  /*getPolicies() {
-    return this.db.collection('Users').doc(this.userId).collection('Items').doc(this.itemId).snapshotChanges();
-}
-
-  getJokes(){  
-    return this.db.collection('Users').snapshotChanges();
-  }*/
-
-  //Add Scanned QR-Code Data to Database Collection "Items"
-  /*addQrItem(){
-    this.afAuth.authState.subscribe(user => {
-      if(user){
-        this.userId = user.uid;
-      }
-      console.log(user.uid);
-
-      this.db.collection('Users').doc(this.userId).collection('Items').doc(this.itemId).set({
-        data: this.qrResult
-      })
-    });
-  }*/
-
-/*getSth(){
-this.afAuth.authState.subscribe(user => {
-      if(user){
-        this.userId = user.uid;
-      }
-    var val = this.db.collection('Users').doc(this.userId).collection('Items').snapshotChanges();
-    console.log(val)
-    });
-  }*/
-
 }
