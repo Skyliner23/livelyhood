@@ -16,6 +16,7 @@ ul {
     color: #696969;
     font-weight: 300;
     line-height: 2.25em;
+    height: 100%;
 }
 
 /* custom */
@@ -748,6 +749,7 @@ ol.default li {
 
 #header-wrapper {
     padding: 4.5em 0 1em 0;
+    text-align: center;
 }
 
 #footer-wrapper {
@@ -765,6 +767,7 @@ ol.default li {
 #logo {
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
+    text-align: center;
 }
 
 #logo h1 {
@@ -772,20 +775,17 @@ ol.default li {
     color: #fff;
     border-radius: 6px;
     font-weight: 400;
-    padding: 0.25em 0.2em 0.25em 0.2em;
-    font-size: 3.25em;
+    font-size: 5em;
     letter-spacing: 0.05em;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 #logo span {
     font-weight: 800;
     line-height: 3em;
     letter-spacing: 0.025em;
-    font-size: 0.9em;
-    vertical-align: bottom;
-    margin: 0 0 0 1.25em;
+    font-size: 1em;
 }
 
 /* Banner */
