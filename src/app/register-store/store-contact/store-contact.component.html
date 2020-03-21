@@ -1,0 +1,43 @@
+
+  
+  <ion-item class="ion-float-left">
+      <img class="storeimg" src="assets/img/social.jpg" height="150px"  (click)="uploadStoreImg()">
+  </ion-item>
+  <ion-item >
+    <ion-label position="stacked">Eine kurze Beschreibung von dir und deiner Person:</ion-label><br>
+    <ion-textarea required="true" rows="10"  placeholder="Stelle dich hier vor :) ..."></ion-textarea>
+  </ion-item>
+<ion-item> 
+  <ion-label>Deine Adresse: </ion-label>
+  <ion-input required="true" value=""></ion-input>
+</ion-item>
+<ion-item> 
+  <ion-label>Deine Postleitzahl: </ion-label>
+  <ion-input required="true" type="number" value=""></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Dein Umkreis:</ion-label>
+  <ion-range min="0" max="75" color="primary" [(ngModel)]="distance" (ionChange)=updateDistance()>
+    <ion-label slot="start">0</ion-label>
+    <ion-label slot="end">75</ion-label>
+    
+  </ion-range>
+  <ion-label id="labelDistance">0 km</ion-label>
+</ion-item>
+
+<ion-item> 
+  <ion-label>Dein Instagram Handle: </ion-label>
+  <ion-input value="" debounce="1000" (ionChange)=instaChanged() id="insta" [(ngModel)]="instaInput"></ion-input>
+</ion-item>
+<ion-item> 
+  <ion-label>Dein Facebook Account: </ion-label>
+  <ion-input value="" debounce="1000" (ionChange)=fbChanged()></ion-input>
+</ion-item>
+<ion-item> 
+  <ion-label>Deine Mail: </ion-label>
+  <ion-input value="" debounce="1000" (ionChange)=mailChanged() type="email" id="mail"></ion-input>
+</ion-item>
+<ion-item> 
+  <ion-label>Deine Telefonnummer: </ion-label>
+  <ion-input value="" debounce="1000" (ionChange)=phoneChanged() type="tel"></ion-input>
+</ion-item>

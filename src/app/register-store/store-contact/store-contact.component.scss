@@ -1,0 +1,14 @@
+img.storeimg {
+    border-radius: 3%;
+  }
+  img.storeimg:hover {
+    cursor: pointer;
+    filter: blur(2px);
+}
+.store-products-container {
+  margin: 2rem 4rem;
+}
+
+.branch-badge {
+margin: 0 0.5rem;
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      LIVELYHOOD
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/home']">
+        Start
+      </ion-button>
+      <ion-button [routerLink]="['/search']">
+        Suche
+      </ion-button>
+      <ion-button [routerLink]="['/team']">
+        Team
+      </ion-button>
+      <ion-button [routerLink]="['/about']">
+        Über uns
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="store-container">
+    <app-store-contact></app-store-contact>
+    <app-store-products></app-store-products>
+  </div>
+</ion-content>

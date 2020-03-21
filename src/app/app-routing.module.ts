@@ -42,6 +42,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./landingpage/landingpage.module').then(m => m.LandingpagePageModule),
   },
+  {
+    path: 'register-store',
+    loadChildren: () =>
+      import('./register-store/register-store.module').then(m => m.RegisterStorePageModule),
+  },
 ];
 
 @NgModule({
