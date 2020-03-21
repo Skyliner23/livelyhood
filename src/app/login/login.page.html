@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row" *ngIf="authError">
+    <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+  </div>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <ion-item>
+      <ion-label>
+        Email
+      </ion-label>
+      <ion-input ngModel #email= "ngModel" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Password
+      </ion-label>
+      <ion-input ngModel #password= "ngModel" name="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Login</ion-button>
+    <ion-button [routerLink] = "['/register']">Register</ion-button>
+  </form>
