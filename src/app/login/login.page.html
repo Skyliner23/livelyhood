@@ -1,33 +1,49 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-            Login
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>
+      LIVELYHOOD
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/home']">
+        Start
+      </ion-button>
+      <ion-button [routerLink]="['/search']">
+        Suche
+      </ion-button>
+      <ion-button [routerLink]="['/team']">
+        Team
+      </ion-button>
+      <ion-button [routerLink]="['/about']">
+        Über uns
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="row" *ngIf="authError">
-        <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
-    </div>
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-        <ion-item>
-            <ion-label>
-                Email
-            </ion-label>
-            <ion-input ngModel #email="ngModel" name="email"></ion-input>
-        </ion-item>
+  <div class="row" *ngIf="authError">
+    <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+  </div>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <ion-item>
+      <ion-label>
+        Email
+      </ion-label>
+      <ion-input ngModel #email="ngModel" name="email"></ion-input>
+    </ion-item>
 
-        <ion-item>
-            <ion-label>
-                Password
-            </ion-label>
-            <ion-input ngModel #password="ngModel" name="password" type="password"></ion-input>
-        </ion-item>
-        <ion-button type="submit">Login</ion-button>
-        <ion-button [routerLink]="['/register']">Register</ion-button>
-    </form></ion-content
+    <ion-item>
+      <ion-label>
+        Password
+      </ion-label>
+      <ion-input
+        ngModel
+        #password="ngModel"
+        name="password"
+        type="password"
+      ></ion-input>
+    </ion-item>
+    <ion-button type="submit">Login</ion-button>
+    <ion-button [routerLink]="['/register']">Register</ion-button>
+  </form></ion-content
 >
