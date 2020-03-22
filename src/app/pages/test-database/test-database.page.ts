@@ -35,4 +35,9 @@ export class TestDatabasePage implements OnInit {
   delete(id: string) {
     this.vendorService.deleteVendor(id);
   }
+
+  async vendorById(id: string) {
+    const vendor = await this.vendorService.getVendorById(id);
+    console.log(vendor);
+  }
 }

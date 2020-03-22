@@ -27,6 +27,19 @@ export class VendorService {
     });
   }
 
+  async getVendorById(id: string): Promise<any> {
+    const vendor = await this.db
+      .collection('vendors')
+      .doc(id)
+      .get()
+      .toPromise();
+
+    return {
+      id: vendor.id,
+      ...vendor.data(),
+    } as Vendor;
+  }
+
   createVendor(vendor: Vendor) {
     delete vendor.id;
     return this.db.collection('vendors').add(vendor);
