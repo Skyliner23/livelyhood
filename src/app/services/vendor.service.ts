@@ -40,9 +40,10 @@ export class VendorService {
     } as Vendor;
   }
 
-  createVendor(vendor: Vendor) {
+  async createVendor(vendor: Vendor): Promise<string> {
     delete vendor.id;
-    return this.db.collection('vendors').add(vendor);
+    const newVendor = await this.db.collection('vendors').add(vendor);
+    return newVendor.id;
   }
 
   updateVendor(vendor: Vendor) {

@@ -5,7 +5,7 @@
   </ion-item>
   <ion-item >
     <ion-label position="stacked">Eine kurze Beschreibung von dir und deiner Person:</ion-label><br>
-    <ion-textarea required="true" rows="5"  placeholder="Stelle dich hier in 2 Sätzen vor :) ..."></ion-textarea>
+    <ion-textarea required="true" rows="5"  placeholder="Stelle dich hier in 2 Sätzen vor :) ..." [(ngModel)]="vendor.business.description" name="businessDesc"></ion-textarea>
   </ion-item>
   <ion-item>
     <ion-label>Name deines Ladens: </ion-label>

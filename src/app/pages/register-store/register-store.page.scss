@@ -1,7 +1,58 @@
 .store-container {
-    margin-top: 5rem ;
-    margin-bottom: 15rem;
-    max-width: 550px;
-    margin-left: auto ;
-    margin-right: auto ;
-  }
+  margin-top: 5rem;
+  margin-bottom: 15rem;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit-new-vendor {
+  width: 100%;
+  text-align: center;
+}
+
+
+.image-wrap {
+  padding: 10px;
+  border: solid 1px #e0e0e0;
+  display: inline-block;
+}
+
+.img-space {
+  border: dashed 1px #d3d3d3;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  height: auto;
+  width: 200px;
+  padding: 10px;
+  min-height:175px;
+  
+}
+.img-space img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.fileInputProfileWrap {
+  width: 100%;
+  height: auto;
+}
+
+.fileInputProfile {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  opacity: 0;
+}
+img.storeimg:hover {
+  cursor: pointer;
+  filter: blur(2px);
+}
+.hoverblur:hover{
+  cursor: pointer;
+  filter: blur(2px);
+}

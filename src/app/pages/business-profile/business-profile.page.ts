@@ -64,7 +64,7 @@ export class BusinessProfilePage implements OnInit {
     v.business.businessName = 'Company ' + businessId;
     v.business.businessDescription = 'Dieses Geschäft macht dies und das und jenes...'
     v.business.profilePic = 'assets/icon/favicon.png';
-    v.business.branch = ['dies', 'das', 'jenes', 'und noch mehr'];
+    v.business.branches = ['dies', 'das', 'jenes', 'und noch mehr'];
     v.contactInfo = new DummyVendorContactInfo;
     v.contactInfo.email = 'asd@asd.de';
     v.contactInfo.website = 'lievelyhood.de';
@@ -81,7 +81,7 @@ export class DummyVendor implements Vendor {
   business: import("../../models/vendor").VendorBusiness;
   contactInfo: import("../../models/vendor").VendorContactInfo;
   products: import("../../models/vendor").VendorProduct[];
-  services: import("../../models/vendor").VendorService[];
+  services: import("../../models/vendor").VendorProvidedService[];
   name: string;
 }
 
@@ -91,7 +91,7 @@ export class DummyVendorBusiness implements VendorBusiness {
   openingHours: string;
   profilePic: string;
   businessRange: string[];
-  branch: string[];
+  branches: string[];
 }
 
 export class DummyVendorProduct implements VendorProduct {

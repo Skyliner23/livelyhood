@@ -3,7 +3,7 @@ export interface Vendor {
   business: VendorBusiness;
   contactInfo: VendorContactInfo;
   products: VendorProduct[];
-  services: VendorService[];
+  services: VendorProvidedService[];
 }
 
 export interface VendorBusiness {
@@ -13,7 +13,7 @@ export interface VendorBusiness {
   openingHours: string;
   profilePic: string;
   businessRange: string[]; // add a range of zipCodes
-  branch: string[];
+  branches: string[];
 }
 
 export interface VendorContactInfo {
@@ -39,6 +39,6 @@ export interface VendorProduct {
   name: string;
 }
 
-export interface VendorService {
+export interface VendorProvidedService {
   name: string;
 }
