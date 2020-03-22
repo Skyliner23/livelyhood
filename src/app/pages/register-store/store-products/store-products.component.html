@@ -1,27 +1,28 @@
 <div class="store-products-container">
-  <form (ngSubmit)="submitProductsInfo()">
+  
     <ion-item>
-      <ion-label>Ihre Branche</ion-label>
+      <ion-label>Deine Branche:</ion-label>
       <ion-input type="text" (keyup.enter)="addBranch()" [(ngModel)]="latestBranch" name="latestBranch"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-badge class="branch-badge" item-end *ngFor="let branchName of productsInfo.branches">{{branchName}}</ion-badge>
+      <ion-chip class="branch-badge" item-end *ngFor="let branchName of productsInfo.branches" (click)="removeBranch(branchName)">
+        {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
     </ion-item>
     <ion-item>
-      <ion-label>Ihre Produkte</ion-label>
+      <ion-label>Deine Produkte:</ion-label>
       <ion-input type="text" (keyup.enter)="addProduct()" [(ngModel)]="latestProduct" name="latestProduct"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-badge class="branch-badge" item-end *ngFor="let branchName of productsInfo.products">{{branchName}}</ion-badge>
+      <ion-chip class="branch-badge" item-end *ngFor="let branchName of productsInfo.products" (click)="removeProduct(branchName)">
+        {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
     </ion-item>
     <ion-item>
-      <ion-label>Ihre Services</ion-label>
-      <ion-input type="text" (keyup.enter)="addService()" [(ngModel)]="latestService"  name="latestService"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-badge class="branch-badge" item-end *ngFor="let branchName of productsInfo.services">{{branchName}}</ion-badge>
-    </ion-item>
+        <ion-label>Deine Services</ion-label>
+        <ion-select value="services" multiple="true">
+          <ion-select-option value="delivery">Lieferung</ion-select-option>
+          <ion-select-option value="store">Abholung</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-      <button ion-button type="submit" block>Speichern</button>
-  </form>
+      
 </div>
