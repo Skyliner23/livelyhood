@@ -21,18 +21,28 @@ export class StoreProductsComponent implements OnInit {
 
   ngOnInit() { }
 
-  submitProductsInfo() {
-    console.log('Current state of products info:', this.productsInfo);
-  }
 
   addBranch() {
     this.productsInfo.branches.push(this.latestBranch);
     this.latestBranch = null
   }
-
+  removeBranch(branchName)
+  {
+    this.productsInfo.branches.forEach( (item, index) => {
+      if(item === branchName) this.productsInfo.branches.splice(index,1);
+    });
+    
+  }
   addProduct() {
     this.productsInfo.products.push(this.latestProduct);
     this.latestProduct = null
+  }
+  removeProduct(productName)
+  {
+    this.productsInfo.products.forEach( (item, index) => {
+      if(item === productName) this.productsInfo.products.splice(index,1);
+    });
+    
   }
 
   addService() {
