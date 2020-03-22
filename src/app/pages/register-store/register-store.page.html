@@ -93,8 +93,8 @@
     <ion-input type="text" (keyup.enter)="addProduct()" [(ngModel)]="latestProduct" name="latestProduct"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-chip class="branch-badge" item-end *ngFor="let branchName of vendor.products" (click)="removeProduct(branchName)">
-      {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
+    <ion-chip class="branch-badge" item-end *ngFor="let product of vendor.products" (click)="removeProduct(product.name)">
+      {{product.name}}<ion-icon name="close-circle"></ion-icon></ion-chip>
   </ion-item>
   <ion-item>
       <ion-label>Deine Services</ion-label>

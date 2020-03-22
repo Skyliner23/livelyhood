@@ -17,28 +17,45 @@ export class RegisterStorePage implements OnInit {
   instInput;
   vendor: Vendor;
 
-  constructor(vendorService: VendorService){
-
+  constructor(private vendorService: VendorService) {
   }
 
   ngOnInit() {
-    this.vendor = {
+    this.vendor = this.getNewVendor();
+  }
+
+  registerNewVendor(): void {
+
+    console.log(this.vendor);
+    if (!this.isEmptyVendor()) {
+      console.log('saving to database')
+      this.vendorService.createVendor(this.vendor)
+    }
+
+  }
+
+  isEmptyVendor(): boolean {
+    const isEmpty = this.isEmpty(this.vendor.business)
+      || Object.keys(this.vendor.contactInfo).length === 1
+      || this.isEmpty(this.vendor.services)
+      || this.isEmpty(this.vendor.products);
+    console.log('Empty Vendor:', isEmpty)
+    return isEmpty;
+  }
+
+  private isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
+  getNewVendor(): Vendor {
+    return {
       business: {} as VendorBusiness,
       contactInfo: {
         socialMedia: {} as VendorSocialMedia
       } as VendorContactInfo,
       services: [],
       products: []
-    }
-    this.vendor.contactInfo.socialMedia ={} as VendorSocialMedia;
-  }
-
-  registerNewVendor(): void {
-
-    console.log(this.vendor);
-    if (this.vendor !== null) {
-    }
-
+    };
   }
 
   updateDistance() {
@@ -50,8 +67,8 @@ export class RegisterStorePage implements OnInit {
   }
 
   addBranch() {
-    if(!this.vendor.business.branches){
-      this.vendor.business.branches =[];
+    if (!this.vendor.business.branches) {
+      this.vendor.business.branches = [];
     }
     this.vendor.business.branches.push(this.latestBranch);
     this.latestBranch = null
@@ -65,7 +82,7 @@ export class RegisterStorePage implements OnInit {
   }
 
   addProduct() {
-    this.vendor.products.push({name: this.latestProduct} as VendorProduct);
+    this.vendor.products.push({ name: this.latestProduct } as VendorProduct);
     this.latestProduct = null
     console.log(this.vendor.products);
   }
@@ -82,7 +99,7 @@ export class RegisterStorePage implements OnInit {
   }
 
   buildServiceElement(serviceName): VendorProduct {
-    return {name: serviceName} as VendorProvidedService;
+    return { name: serviceName } as VendorProvidedService;
   }
 
 }
