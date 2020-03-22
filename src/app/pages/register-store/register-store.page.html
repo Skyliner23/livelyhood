@@ -10,19 +10,19 @@
     </ion-item>
     <ion-item>
       <ion-label>Name deines Ladens: </ion-label>
-    <ion-input required="true" value=""></ion-input>
+    <ion-input required="true" value="" name="vendorName" [(ngModel)]="vendor.business.businessName"></ion-input>
     </ion-item>
   <ion-item> 
-    <ion-label>Deine Adresse: </ion-label>
-    <ion-input required="true" value=""></ion-input>
+    <ion-label>Straße deines Ladens: </ion-label>
+    <ion-input required="true" value="" name="vendorStreet" [(ngModel)]="vendor.contactInfo.street"></ion-input>
+  </ion-item>
+  <ion-item> 
+    <ion-label>Hausnummer deines Ladens</ion-label>
+    <ion-input required="true" type="number" value="" name="vendorhouseNumber" [(ngModel)]="vendor.contactInfo.houseNumber"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Deine Postleitzahl: </ion-label>
-    <ion-input required="true" type="number" value=""></ion-input>
-  </ion-item>
-  <ion-item> 
-    <ion-label>Deine Stadt: </ion-label>
-    <ion-input required="true" value=""></ion-input>
+    <ion-input required="true" type="number" value="" name="vendorzipCode" [(ngModel)]="vendor.contactInfo.zipCode"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Dein Umkreis:</ion-label>
@@ -34,35 +34,41 @@
   </ion-item>
   <ion-item >
     <ion-label position="stacked">Deine Öffnungszeiten:</ion-label><br>
-    <ion-textarea required="true" rows="5"  placeholder="Mo-Fr: 09:00-15:30 "></ion-textarea>
+    <ion-textarea required="true" rows="5"  placeholder="Mo-Fr: 09:00-15:30 " name="vendoropeningHours" [(ngModel)]="vendor.business.openingHours"></ion-textarea>
   </ion-item>
   <ion-item> 
     <ion-label>Dein Instagram Handle: </ion-label>
-    <ion-input value="" debounce="1000" id="insta"></ion-input>
+    <ion-input value="" debounce="1000" id="insta" name="vendorInsta" [(ngModel)]="vendor.contactInfo.socialMedia?.instagram"></ion-input>
   </ion-item>
+
   <ion-item> 
     <ion-label>Dein Facebook Account: </ion-label>
-    <ion-input value="" debounce="1000" ></ion-input>
+    <ion-input value="" debounce="1000" name="vendorFb" [(ngModel)]="vendor.contactInfo.socialMedia?.facebook"></ion-input>
   </ion-item>
-  <ion-item> 
+  
+    <ion-item> 
+      <ion-label>Dein Twitter Account: </ion-label>
+      <ion-input value="" debounce="1000" name="vendorTwitter" [(ngModel)]="vendor.contactInfo.socialMedia?.twitter"></ion-input>
+    </ion-item>
+    <ion-item>
     <ion-label>Deine E-Mail: </ion-label>
-    <ion-input value="" debounce="1000"  type="email" id="mail"></ion-input>
+    <ion-input value="" debounce="1000"  type="email" id="mail" name="vendorMail" [(ngModel)]="vendor.contactInfo.email"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Deine Website: </ion-label>
-    <ion-input value="" debounce="1000" type="email" id="mail"></ion-input>
+    <ion-input value="" debounce="1000" type="url" id="url" name="vendorUrl" [(ngModel)]="vendor.contactInfo.website"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Deine Telefonnummer: </ion-label>
-    <ion-input value="" debounce="1000"  type="tel"></ion-input>
+    <ion-input value="" debounce="1000"  type="tel" name="vendorTel" [(ngModel)]="vendor.contactInfo.telefone"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Deine Whatsappnummer: </ion-label>
-    <ion-input value="" debounce="1000"  type="tel"></ion-input>
+    <ion-input value="" debounce="1000"  type="tel" name="vendorWA" [(ngModel)]="vendor.contactInfo.whatsApp"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Dein Ebay-Kleinanzeigen-Account: </ion-label>
-    <ion-input value="" debounce="1000" ></ion-input>
+    <ion-input value="" debounce="1000" name="vendorebay" [(ngModel)]="vendor.contactInfo.socialMedia?.ebay"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Dein Lieferando-Account: </ion-label>
@@ -70,8 +76,8 @@
   </ion-item>
   <ion-item> 
     <ion-label>Eine Andere Platform: </ion-label>
-    <ion-input value="" debounce="1000" ></ion-input>
-  </ion-item>
+    <ion-input value="" debounce="1000" name="vendorother" [(ngModel)]="vendor.contactInfo.socialMedia?.other"></ion-input>
+  </ion-item>-->
   <ion-item>
     <ion-label>Deine Branche:</ion-label>
     <ion-input type="text" (keyup.enter)="addBranch()" [(ngModel)]="latestBranch" name="latestBranch"></ion-input>
@@ -95,7 +101,7 @@
         <ion-select-option value="store">Abholung</ion-select-option>
       </ion-select>
     </ion-item>
-
+  
     <ion-button type="submit" (click)="this.registerNewVendor()" block>Speichern</ion-button>
   </form>
   </div>
