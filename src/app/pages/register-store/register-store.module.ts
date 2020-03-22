@@ -7,8 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterStorePageRoutingModule } from './register-store-routing.module';
 
 import { RegisterStorePage } from './register-store.page';
-import { StoreContactComponent } from './store-contact/store-contact.component';
-import { StoreProductsComponent } from './store-products/store-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VendorService } from 'src/app/services/vendor.service';
 
@@ -22,8 +20,6 @@ import { VendorService } from 'src/app/services/vendor.service';
   ],
   declarations: [
     RegisterStorePage,
-    StoreProductsComponent,
-    StoreContactComponent
   ],
   providers: [
     VendorService
