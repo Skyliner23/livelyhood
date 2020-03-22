@@ -38,17 +38,17 @@
   </ion-item>
   <ion-item> 
     <ion-label>Dein Instagram Handle: </ion-label>
-    <ion-input value="" debounce="1000" id="insta" name="vendorInsta" [(ngModel)]="vendor.contactInfo.socialMedia?.instagram"></ion-input>
+    <ion-input value="" debounce="1000" id="insta" name="vendorInsta" [(ngModel)]="vendor.contactInfo.socialMedia.instagram"></ion-input>
   </ion-item>
 
   <ion-item> 
     <ion-label>Dein Facebook Account: </ion-label>
-    <ion-input value="" debounce="1000" name="vendorFb" [(ngModel)]="vendor.contactInfo.socialMedia?.facebook"></ion-input>
+    <ion-input value="" debounce="1000" name="vendorFb" [(ngModel)]="vendor.contactInfo.socialMedia.facebook"></ion-input>
   </ion-item>
   
     <ion-item> 
       <ion-label>Dein Twitter Account: </ion-label>
-      <ion-input value="" debounce="1000" name="vendorTwitter" [(ngModel)]="vendor.contactInfo.socialMedia?.twitter"></ion-input>
+      <ion-input value="" debounce="1000" name="vendorTwitter" [(ngModel)]="vendor.contactInfo.socialMedia.twitter"></ion-input>
     </ion-item>
     <ion-item>
     <ion-label>Deine E-Mail: </ion-label>
@@ -68,7 +68,7 @@
   </ion-item>
   <ion-item> 
     <ion-label>Dein Ebay-Kleinanzeigen-Account: </ion-label>
-    <ion-input value="" debounce="1000" name="vendorebay" [(ngModel)]="vendor.contactInfo.socialMedia?.ebay"></ion-input>
+    <ion-input value="" debounce="1000" name="vendorebay" [(ngModel)]="vendor.contactInfo.socialMedia.ebay"></ion-input>
   </ion-item>
   <ion-item> 
     <ion-label>Dein Lieferando-Account: </ion-label>
@@ -76,27 +76,29 @@
   </ion-item>
   <ion-item> 
     <ion-label>Eine Andere Platform: </ion-label>
-    <ion-input value="" debounce="1000" name="vendorother" [(ngModel)]="vendor.contactInfo.socialMedia?.other"></ion-input>
-  </ion-item>-->
+    <ion-input value="" debounce="1000" ></ion-input>
+  </ion-item>
+  <!--
   <ion-item>
     <ion-label>Deine Branche:</ion-label>
     <ion-input type="text" (keyup.enter)="addBranch()" [(ngModel)]="latestBranch" name="latestBranch"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-chip class="branch-badge" item-end *ngFor="let branchName of productsInfo.branches" (click)="removeBranch(branchName)">
+    <ion-chip class="branch-badge" item-end *ngFor="let branchName of vendor.products" (click)="removeBranch(branchName)">
       {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
   </ion-item>
+-->
   <ion-item>
     <ion-label>Deine Produkte:</ion-label>
     <ion-input type="text" (keyup.enter)="addProduct()" [(ngModel)]="latestProduct" name="latestProduct"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-chip class="branch-badge" item-end *ngFor="let branchName of productsInfo.products" (click)="removeProduct(branchName)">
+    <ion-chip class="branch-badge" item-end *ngFor="let branchName of vendor.products" (click)="removeProduct(branchName)">
       {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
   </ion-item>
   <ion-item>
       <ion-label>Deine Services</ion-label>
-      <ion-select value="services" multiple="true">
+      <ion-select value="services" multiple="true" (ionChange)="addService()" name="latestService" [(ngModel)]="latestService">
         <ion-select-option value="delivery">Lieferung</ion-select-option>
         <ion-select-option value="store">Abholung</ion-select-option>
       </ion-select>

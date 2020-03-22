@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService } from 'src/app/models/vendor';
+import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService, VendorSocialMedia } from 'src/app/models/vendor';
 
 @Component({
   selector: 'app-register-store',
@@ -32,9 +32,11 @@ export class RegisterStorePage implements OnInit {
       services: [],
       products: []
     }
+    this.vendor.contactInfo.socialMedia ={} as VendorSocialMedia;
   }
 
   registerNewVendor(): void {
+
     console.log(this.vendor);
     if (this.vendor !== null) {
       //this.vendorService.createVendor(this.vendor)
@@ -63,19 +65,20 @@ export class RegisterStorePage implements OnInit {
   }
 
   addProduct() {
-    this.productsInfo.products.push(this.latestProduct);
+    this.vendor.products.push(this.latestProduct);
     this.latestProduct = null
+    console.log(this.vendor.products);
   }
 
   removeProduct(productName) {
-    this.productsInfo.products.forEach((item, index) => {
-      if (item === productName) this.productsInfo.products.splice(index, 1);
+    this.vendor.products.forEach((item, index) => {
+      if (item === productName) this.vendor.products.splice(index, 1);
     });
 
   }
 
   addService() {
-    this.productsInfo.services.push(this.latestService);
+    this.vendor.services = (this.latestService);
     this.latestService = null
   }
 
