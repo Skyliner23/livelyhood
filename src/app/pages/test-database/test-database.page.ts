@@ -11,7 +11,14 @@ export class TestDatabasePage implements OnInit {
   constructor(private vendorService: VendorService) {}
 
   async ngOnInit() {
-    console.log(await this.vendorService.createVendor(new Vendor('Paul')));
+    console.log(
+      await this.vendorService.createVendor({
+        business: { businessName: 'TestBusiness' },
+        contactInfo: {},
+        products: [],
+        services: [],
+      } as Vendor)
+    );
     // try {
     // } catch (error) {
     //   console.error(JSON.stringify(error));
