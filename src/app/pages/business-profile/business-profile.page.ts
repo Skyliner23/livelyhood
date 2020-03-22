@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VendorService } from '../../services/vendor.service';
+import { InstagramService } from '../../services/social/instagram.service';
 import { Vendor, VendorBusiness, VendorProduct, VendorContactInfo } from '../../models/vendor';
 
 @Component({
@@ -14,8 +15,9 @@ export class BusinessProfilePage implements OnInit {
   id: string;
   // TODO: change to false default
   hasProfilePic = true;
+  instaHtml: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private vendorService: VendorService) { }
+  constructor(private activatedRoute: ActivatedRoute, private vendorService: VendorService, private instagramService: InstagramService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -27,15 +29,22 @@ export class BusinessProfilePage implements OnInit {
       // TODO: already sanitized for db calls?
 
       // TODO: remove...
-      this.vendor = this.createFakeVendor(businessId)
+      this.vendor = this.createFakeVendor(businessId);
+
+      this.instagramService.fetchInstagramFeed(this.vendor.contactInfo.socialMedia.instagram);
 
       // call service with specific id
       this.vendorService.getVendorById(businessId).then(data => {
         // TODO: define criteria and default case
-        if(data && data.business){
+        if (data && data.business) {
           this.vendor = data;
-          if (data.business && data.business.profilePic){
+          if (data.business && data.business.profilePic) {
             this.hasProfilePic = true;
+          }
+          if (data.contactInfo && data.contactInfo.socialMedia && data.contactInfo.socialMedia.instagram) {
+            this.instagramService.fetchInstagramFeed(data.contactInfo.socialMedia.instagram).subscribe(data => {
+              this.instaHtml = data.html;
+            });
           }
         }
       }).catch(error => {
@@ -62,6 +71,7 @@ export class BusinessProfilePage implements OnInit {
     v.contactInfo.street = 'Strasse des seeligen Friedens';
     v.contactInfo.houseNumber = '123a/b';
     v.contactInfo.zipCode = '12345';
+    v.contactInfo.socialMedia = { facebook: '', instagram: 'https://www.instagram.com/p/fA9uwTtkSN/', ebay: '', other: [], twitter: '' };
     return v;
   }
 
