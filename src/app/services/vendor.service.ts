@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { Vendor } from '../models/vendor';
+import {
+  AngularFirestore,
+  DocumentReference,
+  QuerySnapshot,
+} from '@angular/fire/firestore';
 import { IVendor } from '../models/vendor.interface';
 import { IVendorService } from './vendor.service.interface';
 
@@ -10,13 +13,14 @@ import { IVendorService } from './vendor.service.interface';
 export class VendorService implements IVendorService {
   constructor(private db: AngularFirestore) {}
 
-  async allVendors(): Promise<Vendor> {
-    return await new Vendor('');
+  async allVendors(): Promise<QuerySnapshot<any>> {
+    return await this.db
+      .collection('vendors')
+      .get()
+      .toPromise();
   }
 
   async createVendor(vendor: IVendor): Promise<DocumentReference> {
-    const userId = '';
-
     return await this.db.collection('vendors').add({ ...vendor });
   }
 }

@@ -15,7 +15,9 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () =>
-      import('./pages/register/register.module').then(m => m.RegisterPageModule),
+      import('./pages/register/register.module').then(
+        m => m.RegisterPageModule
+      ),
   },
   {
     path: 'home',
@@ -40,12 +42,23 @@ const routes: Routes = [
   {
     path: 'landingpage',
     loadChildren: () =>
-      import('./pages/landingpage/landingpage.module').then(m => m.LandingpagePageModule),
+      import('./pages/landingpage/landingpage.module').then(
+        m => m.LandingpagePageModule
+      ),
   },
   {
     path: 'register-store',
     loadChildren: () =>
-      import('./pages/register-store/register-store.module').then(m => m.RegisterStorePageModule),
+      import('./pages/register-store/register-store.module').then(
+        m => m.RegisterStorePageModule
+      ),
+  },
+  {
+    path: 'test-database',
+    loadChildren: () =>
+      import('./pages/test-database/test-database.module').then(
+        m => m.TestDatabasePageModule
+      ),
   },
 ];
 

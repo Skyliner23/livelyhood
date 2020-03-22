@@ -1,7 +1,7 @@
-import { DocumentReference } from '@angular/fire/firestore';
+import { DocumentReference, QuerySnapshot } from '@angular/fire/firestore';
 import { Vendor } from '../models/vendor';
 
 export interface IVendorService {
-  allVendors(): Promise<Vendor>;
+  allVendors(): Promise<QuerySnapshot<any>>;
   createVendor(vendor: Vendor): Promise<DocumentReference>;
 }
