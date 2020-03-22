@@ -15,6 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthGuard } from './auth.guard';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { AuthGuard } from './auth.guard';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    CoreModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
