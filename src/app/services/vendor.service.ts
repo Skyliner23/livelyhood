@@ -27,7 +27,7 @@ export class VendorService {
     });
   }
 
-  async getVendorById(id: string): Promise<any> {
+  async getVendorById(id: string): Promise<Vendor> {
     const vendor = await this.db
       .collection('vendors')
       .doc(id)
