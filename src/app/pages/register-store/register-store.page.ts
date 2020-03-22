@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService, VendorClass } from 'src/app/models/vendor';
+import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService } from 'src/app/models/vendor';
 
 @Component({
   selector: 'app-register-store',
@@ -26,46 +26,52 @@ export class RegisterStorePage implements OnInit {
   vendor: Vendor;
 
   ngOnInit() {
+    this.vendor = {
+      business: {} as VendorBusiness,
+      contactInfo: {} as VendorContactInfo,
+      services: [],
+      products: []
+    }
   }
 
   registerNewVendor(): void {
-    if(this.vendor !== null){
+    console.log(this.vendor);
+    if (this.vendor !== null) {
       //this.vendorService.createVendor(this.vendor)
     }
-    
+
   }
 
-  updateDistance()
-  {
+  updateDistance() {
     document.getElementById("labelDistance").innerHTML = this.distance + " km";
   }
 
-  uploadStoreImg()
-  {
-    console.log('test');  
+  uploadStoreImg() {
+    console.log('test');
   }
 
   addBranch() {
     this.productsInfo.branches.push(this.latestBranch);
     this.latestBranch = null
   }
-  removeBranch(branchName)
-  {
-    this.productsInfo.branches.forEach( (item, index) => {
-      if(item === branchName) this.productsInfo.branches.splice(index,1);
+
+  removeBranch(branchName) {
+    this.productsInfo.branches.forEach((item, index) => {
+      if (item === branchName) this.productsInfo.branches.splice(index, 1);
     });
-    
+
   }
+
   addProduct() {
     this.productsInfo.products.push(this.latestProduct);
     this.latestProduct = null
   }
-  removeProduct(productName)
-  {
-    this.productsInfo.products.forEach( (item, index) => {
-      if(item === productName) this.productsInfo.products.splice(index,1);
+
+  removeProduct(productName) {
+    this.productsInfo.products.forEach((item, index) => {
+      if (item === productName) this.productsInfo.products.splice(index, 1);
     });
-    
+
   }
 
   addService() {
