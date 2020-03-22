@@ -98,13 +98,17 @@
   </ion-item>
   <ion-item>
       <ion-label>Deine Services</ion-label>
-      <ion-select value="services" multiple="true" (ionChange)="addService()" name="latestService" [(ngModel)]="latestService">
+      <ion-select value="services" multiple="true" (ionChange)="addService()" name="latestService" [(ngModel)]="latestServices">
         <ion-select-option value="delivery">Lieferung</ion-select-option>
         <ion-select-option value="store">Abholung</ion-select-option>
       </ion-select>
     </ion-item>
   
-    <ion-button type="submit" (click)="this.registerNewVendor()" block>Speichern</ion-button>
+    <ion-row>
+      <ion-col class="submit-new-vendor">
+        <ion-button type="submit" (click)="this.registerNewVendor()" block>Speichern</ion-button>
+      </ion-col>
+    </ion-row>
   </form>
   </div>
 </ion-content>

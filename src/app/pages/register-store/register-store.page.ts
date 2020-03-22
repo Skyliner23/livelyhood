@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService, VendorSocialMedia } from 'src/app/models/vendor';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-register-store',
@@ -12,14 +13,8 @@ import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService
 export class RegisterStorePage implements OnInit {
 
   latestBranch = null;
-  latestService = null;
+  latestServices: string[] = [];
   latestProduct = null;
-
-  productsInfo = {
-    branches: [],
-    products: [],
-    services: []
-  };
 
   distance;
   instInput;
@@ -28,7 +23,9 @@ export class RegisterStorePage implements OnInit {
   ngOnInit() {
     this.vendor = {
       business: {} as VendorBusiness,
-      contactInfo: {} as VendorContactInfo,
+      contactInfo: {
+        socialMedia: {} as VendorSocialMedia
+      } as VendorContactInfo,
       services: [],
       products: []
     }
@@ -53,33 +50,39 @@ export class RegisterStorePage implements OnInit {
   }
 
   addBranch() {
-    this.productsInfo.branches.push(this.latestBranch);
+    if(!this.vendor.business.branches){
+      this.vendor.business.branches =[];
+    }
+    this.vendor.business.branches.push(this.latestBranch);
     this.latestBranch = null
   }
 
   removeBranch(branchName) {
-    this.productsInfo.branches.forEach((item, index) => {
-      if (item === branchName) this.productsInfo.branches.splice(index, 1);
+    this.vendor.business.branches.forEach((item, index) => {
+      if (item === branchName) this.vendor.business.branches.splice(index, 1);
     });
 
   }
 
   addProduct() {
-    this.vendor.products.push(this.latestProduct);
+    this.vendor.products.push({name: this.latestProduct} as VendorProduct);
     this.latestProduct = null
     console.log(this.vendor.products);
   }
 
   removeProduct(productName) {
-    this.vendor.products.forEach((item, index) => {
-      if (item === productName) this.vendor.products.splice(index, 1);
+    this.vendor.products.forEach((item: VendorProduct, index) => {
+      if (item.name === productName) this.vendor.products.splice(index, 1);
     });
 
   }
 
   addService() {
-    this.vendor.services = (this.latestService);
-    this.latestService = null
+    this.vendor.services = this.latestServices.map(s => this.buildServiceElement(s));
+  }
+
+  buildServiceElement(serviceName): VendorProduct {
+    return {name: serviceName} as VendorService;
   }
 
 }

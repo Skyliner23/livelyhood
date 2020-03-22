@@ -13,7 +13,7 @@ export interface VendorBusiness {
   openingHours: string;
   profilePic: string;
   businessRange: string[]; // add a range of zipCodes
-  branch: string[];
+  branches: string[];
 }
 
 export interface VendorContactInfo {
