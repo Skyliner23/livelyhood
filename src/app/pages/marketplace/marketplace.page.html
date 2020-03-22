@@ -27,17 +27,20 @@
     <ion-row>
       <ion-col size="4" *ngFor="let vendor of vendors">
         <ion-card (click)="openProfile(vendor.id)">
-          <img src="assets/bakery.jpg" />
+          <ng-container *ngIf="vendor.business && vendor.business.profilePic; else elseTemplate">
+            <ion-img [src]="vendor?.business?.profilePic"></ion-img>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <img src="assets/bakery.jpg" />
+          </ng-template>
           <ion-card-header>
             <ion-card-subtitle>
-              <span *ngFor="let branch of vendor.business.branches"
-                >{{branch}}
-              </span>
+              <span *ngFor="let branch of vendor.business.branches">{{branch}}</span>
             </ion-card-subtitle>
             <ion-card-title>{{vendor.business.businessName}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            {{vendor.business.businessDescription}} <br />
+            {{vendor.business.businessDescription}} <br>
             <b>Status:</b> {{vendor.business.openingHours}}
           </ion-card-content>
         </ion-card>
