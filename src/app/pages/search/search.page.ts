@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Vendor } from 'src/app/models/vendor';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-search',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+  private vendors: Vendor[];
 
-  constructor() { }
+  constructor(private vendorService: VendorService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.vendorService
+      .getVendors()
+      .subscribe(data => (this.vendors = data));
   }
 
 }

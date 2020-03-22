@@ -1,26 +1,6 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      LIVELYHOOD
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/home']">
-        Start
-      </ion-button>
-      <ion-button [routerLink]="['/search']">
-        Suche
-      </ion-button>
-      <ion-button [routerLink]="['/team']">
-        Team
-      </ion-button>
-      <ion-button [routerLink]="['/about']">
-        Über uns
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
-  <ion-list class="ion-float-left" lines="none">
+
+  <ion-list class="ion-float-left" lines="none" slot="fixed">
     <ion-item>
       <ion-label position="fixed">Postleitzahl</ion-label>
       <ion-input type="number" placeholder="12345"></ion-input>
@@ -32,65 +12,35 @@
       </ion-chip>
       <ion-chip color="secondary">
         <ion-label color="dark">Bar</ion-label>
-      </ion-chip >
+      </ion-chip>
       <ion-chip color="secondary">
         <ion-label color="dark">Kleidung</ion-label>
       </ion-chip>
     </ion-item>
     <ion-item>
 
-    <ion-button slot="end">
-      Filter anwenden
-    </ion-button>
-  </ion-item>
+      <ion-button slot="end" onclick="apply_filter()">
+        Filter anwenden
+      </ion-button>
+    </ion-item>
   </ion-list>
- 
 
-  <ion-grid fixed=true>
+  <ion-grid fixed=true class="ion-float-right">
     <ion-row>
-      <ion-col>
+      <ion-col size=4  *ngFor="let vendor of vendors">
         <ion-card>
           <img src="assets/bakery.jpg" />
           <ion-card-header>
-            <ion-card-subtitle>Bäckerei</ion-card-subtitle>
-            <ion-card-title>Bosselmann</ion-card-title>
+            <ion-card-subtitle>
+                <span *ngFor="let branch of vendor.business.branch">{{branch}}   </span>
+              </ion-card-subtitle>
+            <ion-card-title>{{vendor.business.businessName}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            Ein gemütlicher Bäcker in guter Lage. <br>
-            <b>Status:</b> geöffnet
+            <!--{{vendor.business.businessDescription}} <br>
+            <b>Status:</b> {{vendor.business.openingHours}} -->
           </ion-card-content>
         </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <img src="assets/fashion.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Kleidung</ion-card-subtitle>
-            <ion-card-title>Modehaus Schmidt</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Nachhaltige Mode zum fairen Preis. <br>
-            <b>Status:</b> geschlossen, Onlineshop verfügbar
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <img src="assets/bar.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Bar</ion-card-subtitle>
-            <ion-card-title>Dublin Inn</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Englischer Pub <br>
-            <b>Status:</b> geschlossen, Gutscheinaktion verfügbar
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-
       </ion-col>
     </ion-row>
   </ion-grid>
