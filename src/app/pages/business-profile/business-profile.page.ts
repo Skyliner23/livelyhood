@@ -8,47 +8,67 @@ import { Vendor, VendorBusiness, VendorProduct, VendorContactInfo } from '../../
   templateUrl: './business-profile.page.html',
   styleUrls: ['./business-profile.page.scss'],
 })
-export class BusinessProfilePage  implements OnInit {
+export class BusinessProfilePage implements OnInit {
 
   vendor: Vendor;
+  id: string;
+  // TODO: change to false default
+  hasProfilePic = true;
 
-  // TODO inject service for providing data for specific vendor
-  constructor(private activatedRoute: ActivatedRoute, private vendorService: VendorService){}
+  constructor(private activatedRoute: ActivatedRoute, private vendorService: VendorService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      if(!params.has('businessId')){
-        // redirect back to search
+      if (!params.has('businessId')) {
+        // redirect back to search if parameter is missing
         return;
       }
       const businessId = params.get('businessId');
-      // TODO call service with specific id
-      //this.vendorService.getVendorById(businessId)
-      this.createFakeVendor();
+      // TODO: already sanitized for db calls?
+
+      // TODO: remove...
+      this.vendor = this.createFakeVendor(businessId)
+
+      // call service with specific id
+      this.vendorService.getVendorById(businessId).then(data => {
+        // TODO: define criteria and default case
+        if(data && data.business){
+          this.vendor = data;
+          if (data.business && data.business.profilePic){
+            this.hasProfilePic = true;
+          }
+        }
+      }).catch(error => {
+        // TODO: define errorcase
+        console.log(error);
+      });
     });
   }
 
-  createFakeVendor(){
-    this.vendor = new DummyVendor;
-    this.vendor.business = new DummyVendorBusiness;
-    this.vendor.business.businessName = 'Company 123'
-    this.vendor.business.businessDescription = 'Dieses Geschäft macht dies und das und jenes...'
-    this.vendor.business.profilePic = 'assets/icon/favicon.png';
-    this.vendor.business.branch = ['dies','das','jenes','und noch mehr'];
-    this.vendor.contactInfo = new DummyVendorContactInfo;
-    this.vendor.contactInfo.email = 'asd@asd.de';
-    this.vendor.contactInfo.website = 'lievelyhood.de';
-    this.vendor.contactInfo.street = 'Strasse des seeligen Friedens';
-    this.vendor.contactInfo.houseNumber = '123a/b';
-    this.vendor.contactInfo.zipCode = '12345';
+
+
+  // -------------------- fake stuff ----------------------
+
+  createFakeVendor(businessId: string): Vendor {
+    let v = new DummyVendor;
+    v.business = new DummyVendorBusiness;
+    v.business.businessName = 'Company ' + businessId;
+    v.business.businessDescription = 'Dieses Geschäft macht dies und das und jenes...'
+    v.business.profilePic = 'assets/icon/favicon.png';
+    v.business.branch = ['dies', 'das', 'jenes', 'und noch mehr'];
+    v.contactInfo = new DummyVendorContactInfo;
+    v.contactInfo.email = 'asd@asd.de';
+    v.contactInfo.website = 'lievelyhood.de';
+    v.contactInfo.street = 'Strasse des seeligen Friedens';
+    v.contactInfo.houseNumber = '123a/b';
+    v.contactInfo.zipCode = '12345';
+    return v;
   }
 
 }
 
-// -------------------- fake stuff ----------------------
-
 export class DummyVendor implements Vendor {
-  business: import("../../models/vendor").VendorBusiness;  
+  business: import("../../models/vendor").VendorBusiness;
   contactInfo: import("../../models/vendor").VendorContactInfo;
   products: import("../../models/vendor").VendorProduct[];
   services: import("../../models/vendor").VendorService[];
@@ -56,7 +76,7 @@ export class DummyVendor implements Vendor {
 }
 
 export class DummyVendorBusiness implements VendorBusiness {
-  businessName: string;  businessDescription: string;
+  businessName: string; businessDescription: string;
   businessOwner: string;
   openingHours: string;
   profilePic: string;
@@ -69,7 +89,7 @@ export class DummyVendorProduct implements VendorProduct {
 }
 
 export class DummyVendorContactInfo implements VendorContactInfo {
-  street: string;  houseNumber: string;
+  street: string; houseNumber: string;
   zipCode: string;
   telefone: string;
   whatsApp: string;

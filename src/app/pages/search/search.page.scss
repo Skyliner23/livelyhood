@@ -9,14 +9,15 @@
   }
   
   ion-grid {
-    --ion-grid-width:610px;
-    --ion-grid-padding:10px
+    --ion-grid-width:920px;
+    
 }
-
+ion-content {
+  width:100%
+}
 ion-item {
     margin-top: 10px;
 }
-
 
 ion-list {
     padding-left: 30px;
