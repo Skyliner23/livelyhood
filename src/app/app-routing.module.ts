@@ -20,19 +20,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'search',
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule),
-      },
-      {
-        path: ':businessId',
-        loadChildren: () => import('./pages/business-profile/business-profile.module').then(m => m.BusinessProfilePageModule),
-      }
-    ],
-  },
-  {
     path: 'register-store',
     loadChildren: () =>
       import('./pages/register-store/register-store.module').then(
@@ -46,7 +33,25 @@ const routes: Routes = [
         m => m.TestDatabasePageModule
       ),
   },
-
+  {
+    path: 'marketplace',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/marketplace/marketplace.module').then(
+            m => m.MarketplacePageModule
+          ),
+      },
+      {
+        path: ':businessId',
+        loadChildren: () =>
+          import('./pages/business-profile/business-profile.module').then(
+            m => m.BusinessProfilePageModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -55,4 +60,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

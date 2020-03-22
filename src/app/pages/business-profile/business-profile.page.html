@@ -1,6 +1,6 @@
 <ion-toolbar>
   <ion-buttons slot="start">
-    <ion-back-button defaultHref="search"></ion-back-button>
+    <ion-back-button defaultHref="marketplace"></ion-back-button>
   </ion-buttons>
 </ion-toolbar>
 
@@ -10,7 +10,10 @@
     <ion-row>
       <div *ngIf="hasProfilePic">
         <ion-col class="img-col" size="3" size-sm>
-          <ion-img style="width: 400px;" [src]="vendor?.business?.profilePic"></ion-img>
+          <ion-img
+            style="width: 400px;"
+            [src]="vendor?.business?.profilePic"
+          ></ion-img>
         </ion-col>
       </div>
       <div *ngIf="!hasProfilePic">
@@ -20,15 +23,21 @@
       </div>
       <ion-col>
         <div class="description">
-          <ion-label class="ion-text-wrap">{{ vendor?.business?.businessDescription }}</ion-label>
+          <ion-label class="ion-text-wrap"
+            >{{ vendor?.business?.businessDescription }}</ion-label
+          >
         </div>
         <ion-item>
           <ion-label>{{vendor?.contactInfo?.email}}</ion-label>
           <ion-icon slot="start" name="mail-open-outline"></ion-icon>
         </ion-item>
         <ion-item>
-          <ion-label>{{vendor?.contactInfo?.street}} {{vendor?.contactInfo?.houseNumber}},
-            {{vendor?.contactInfo?.zipCode}} {{vendor?.contactInfo?.city}}</ion-label>
+          <ion-label
+            >{{vendor?.contactInfo?.street}}
+            {{vendor?.contactInfo?.houseNumber}},
+            {{vendor?.contactInfo?.zipCode}}
+            {{vendor?.contactInfo?.city}}</ion-label
+          >
           <ion-icon slot="start" name="business-outline"></ion-icon>
         </ion-item>
         <ion-item>
@@ -55,9 +64,8 @@
         </div>
       </ion-col>
       <ion-col size="3">
-        <div *ngIf="instaHtml" [innerHTML]='instaHtml | keepHtml'></div>
+        <div *ngIf="instaHtml" [innerHTML]="instaHtml | keepHtml"></div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

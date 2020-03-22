@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorSocialMedia, VendorProvidedService } from 'src/app/models/vendor';
-import { VendorService } from 'src/app/services/vendor.service';
 import { Router } from '@angular/router';
+import {
+  Vendor,
+  VendorBusiness,
+  VendorContactInfo,
+  VendorProduct,
+  VendorProvidedService,
+  VendorSocialMedia,
+} from 'src/app/models/vendor';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-register-store',
@@ -9,7 +16,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-store.page.scss'],
 })
 export class RegisterStorePage implements OnInit {
-
   latestBranch = null;
   latestServices: string[] = [];
   latestProduct = null;
@@ -22,35 +28,30 @@ export class RegisterStorePage implements OnInit {
   instInput;
   vendor: Vendor;
 
-  constructor(private vendorService: VendorService,
-    private router: Router) {
-  }
+  constructor(private vendorService: VendorService, private router: Router) {}
 
   ngOnInit() {
     this.vendor = this.getNewVendor();
   }
 
   registerNewVendor(): void {
-
     console.log(this.vendor);
     if (!this.isEmptyVendor()) {
-      console.log('saving to database')
-      this.vendorService
-        .createVendor(this.vendor)
-        .then(vendorId => {
-          console.log('')
-          this.router.navigateByUrl(`search/${vendorId}`);
-        });
+      console.log('saving to database');
+      this.vendorService.createVendor(this.vendor).then(vendorId => {
+        console.log('');
+        this.router.navigateByUrl(`marketplace/${vendorId}`);
+      });
     }
-
   }
 
   isEmptyVendor(): boolean {
-    const isEmpty = this.isEmpty(this.vendor.business)
-      || Object.keys(this.vendor.contactInfo).length === 1
-      || this.isEmpty(this.vendor.services)
-      || this.isEmpty(this.vendor.products);
-    console.log('Empty Vendor:', isEmpty)
+    const isEmpty =
+      this.isEmpty(this.vendor.business) ||
+      Object.keys(this.vendor.contactInfo).length === 1 ||
+      this.isEmpty(this.vendor.services) ||
+      this.isEmpty(this.vendor.products);
+    console.log('Empty Vendor:', isEmpty);
     return isEmpty;
   }
 
@@ -62,15 +63,15 @@ export class RegisterStorePage implements OnInit {
     return {
       business: {} as VendorBusiness,
       contactInfo: {
-        socialMedia: {} as VendorSocialMedia
+        socialMedia: {} as VendorSocialMedia,
       } as VendorContactInfo,
       services: [],
-      products: []
+      products: [],
     };
   }
 
   updateDistance() {
-    document.getElementById("labelDistance").innerHTML = this.distance + " km";
+    document.getElementById('labelDistance').innerHTML = this.distance + ' km';
   }
 
   uploadStoreImg() {
@@ -82,19 +83,18 @@ export class RegisterStorePage implements OnInit {
       this.vendor.business.branches = [];
     }
     this.vendor.business.branches.push(this.latestBranch);
-    this.latestBranch = null
+    this.latestBranch = null;
   }
 
   removeBranch(branchName) {
     this.vendor.business.branches.forEach((item, index) => {
       if (item === branchName) this.vendor.business.branches.splice(index, 1);
     });
-
   }
 
   addProduct() {
     this.vendor.products.push({ name: this.latestProduct } as VendorProduct);
-    this.latestProduct = null
+    this.latestProduct = null;
     console.log(this.vendor.products);
   }
 
@@ -102,17 +102,17 @@ export class RegisterStorePage implements OnInit {
     this.vendor.products.forEach((item: VendorProduct, index) => {
       if (item.name === productName) this.vendor.products.splice(index, 1);
     });
-
   }
 
   addService() {
-    this.vendor.services = this.latestServices.map(s => this.buildServiceElement(s));
+    this.vendor.services = this.latestServices.map(s =>
+      this.buildServiceElement(s)
+    );
   }
 
   buildServiceElement(serviceName): VendorProduct {
     return { name: serviceName } as VendorProvidedService;
   }
-
 
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
@@ -132,7 +132,8 @@ export class RegisterStorePage implements OnInit {
       console.log(fileInput.target.files[0].type);
       const file_type = fileInput.target.files[0].type;
       if (allowed_types.findIndex(t => file_type === t) === -1) {
-        this.imageError = 'Es können nur Bilder hochgeladen werden ( JPG | PNG ).';
+        this.imageError =
+          'Es können nur Bilder hochgeladen werden ( JPG | PNG ).';
         return false;
       }
       const reader = new FileReader();
@@ -144,7 +145,6 @@ export class RegisterStorePage implements OnInit {
           const img_width = rs.currentTarget['width'];
 
           console.log(img_height, img_width);
-
 
           if (img_height > max_height && img_width > max_width) {
             this.imageError =
@@ -166,12 +166,10 @@ export class RegisterStorePage implements OnInit {
 
       reader.readAsDataURL(fileInput.target.files[0]);
     }
-    
   }
 
   removeImage() {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
   }
-
 }

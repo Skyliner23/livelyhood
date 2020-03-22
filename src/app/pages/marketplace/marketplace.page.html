@@ -1,5 +1,4 @@
 <ion-content>
-
   <ion-list lines="none" slot="fixed">
     <ion-item>
       <ion-label position="fixed">Postleitzahl</ion-label>
@@ -18,26 +17,27 @@
       </ion-chip>
     </ion-item>
     <ion-item>
-
       <ion-button slot="end" onclick="apply_filter()">
         Filter anwenden
       </ion-button>
     </ion-item>
   </ion-list>
 
-  <ion-grid fixed=true >
+  <ion-grid fixed="true">
     <ion-row>
-      <ion-col size=4  *ngFor="let vendor of vendors">
+      <ion-col size="4" *ngFor="let vendor of vendors">
         <ion-card (click)="openProfile(vendor.id)">
           <img src="assets/bakery.jpg" />
           <ion-card-header>
             <ion-card-subtitle>
-                <span *ngFor="let branch of vendor.business.branches">{{branch}}   </span>
-              </ion-card-subtitle>
+              <span *ngFor="let branch of vendor.business.branches"
+                >{{branch}}
+              </span>
+            </ion-card-subtitle>
             <ion-card-title>{{vendor.business.businessName}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            {{vendor.business.businessDescription}} <br>
+            {{vendor.business.businessDescription}} <br />
             <b>Status:</b> {{vendor.business.openingHours}}
           </ion-card-content>
         </ion-card>
