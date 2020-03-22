@@ -10,42 +10,42 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then(m => m.LoginPageModule),
+      import('./pages/login/login.module').then(m => m.LoginPageModule),
   },
   {
     path: 'register',
     loadChildren: () =>
-      import('./register/register.module').then(m => m.RegisterPageModule),
+      import('./pages/register/register.module').then(m => m.RegisterPageModule),
   },
   {
     path: 'home',
     loadChildren: () =>
-      import('./home/home.module').then(m => m.HomePageModule),
+      import('./pages/home/home.module').then(m => m.HomePageModule),
   },
   {
     path: 'team',
     loadChildren: () =>
-      import('./team/team.module').then(m => m.TeamPageModule),
+      import('./pages/team/team.module').then(m => m.TeamPageModule),
   },
   {
     path: 'about',
     loadChildren: () =>
-      import('./about/about.module').then(m => m.AboutPageModule),
+      import('./pages/about/about.module').then(m => m.AboutPageModule),
   },
   {
     path: 'search',
     loadChildren: () =>
-      import('./search/search.module').then(m => m.SearchPageModule),
+      import('./pages/search/search.module').then(m => m.SearchPageModule),
   },
   {
     path: 'landingpage',
     loadChildren: () =>
-      import('./landingpage/landingpage.module').then(m => m.LandingpagePageModule),
+      import('./pages/landingpage/landingpage.module').then(m => m.LandingpagePageModule),
   },
   {
     path: 'register-store',
     loadChildren: () =>
-      import('./register-store/register-store.module').then(m => m.RegisterStorePageModule),
+      import('./pages/register-store/register-store.module').then(m => m.RegisterStorePageModule),
   },
 ];
 
