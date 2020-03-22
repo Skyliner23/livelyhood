@@ -20,6 +20,7 @@ export interface VendorContactInfo {
   street: string;
   houseNumber: string;
   zipCode: string;
+  city: string;
   telefone: string;
   whatsApp: string;
   email: string;
@@ -32,7 +33,7 @@ export interface VendorSocialMedia {
   facebook: string;
   twitter: string;
   ebay: string;
-  other: [];
+  other: string;
 }
 
 export interface VendorProduct {
