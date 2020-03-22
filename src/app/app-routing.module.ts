@@ -20,21 +20,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'home',
-    loadChildren: () =>
-      import('./pages/home/home.module').then(m => m.HomePageModule),
-  },
-  {
-    path: 'team',
-    loadChildren: () =>
-      import('./pages/team/team.module').then(m => m.TeamPageModule),
-  },
-  {
-    path: 'about',
-    loadChildren: () =>
-      import('./pages/about/about.module').then(m => m.AboutPageModule),
-  },
-  {
     path: 'search',
     children: [
       {
@@ -46,13 +31,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/business-profile/business-profile.module').then(m => m.BusinessProfilePageModule),
       }
     ],
-  },
-  {
-    path: 'landingpage',
-    loadChildren: () =>
-      import('./pages/landingpage/landingpage.module').then(
-        m => m.LandingpagePageModule
-      ),
   },
   {
     path: 'register-store',
