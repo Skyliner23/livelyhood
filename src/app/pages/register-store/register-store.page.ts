@@ -23,6 +23,7 @@ export class RegisterStorePage implements OnInit {
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
+  addText :string;
 
   distance;
   instInput;
@@ -78,24 +79,24 @@ export class RegisterStorePage implements OnInit {
     console.log('test');
   }
 
-  addBranch() {
-    if (!this.vendor.business.branches) {
-      this.vendor.business.branches = [];
-    }
-    this.vendor.business.branches.push(this.latestBranch);
-    this.latestBranch = null;
+  addBranch(product) {
+    this.vendor.products.push({ name: product} as VendorProduct);
+    console.log(this.vendor.products);
   }
 
-  removeBranch(branchName) {
-    this.vendor.business.branches.forEach((item, index) => {
-      if (item === branchName) this.vendor.business.branches.splice(index, 1);
-    });
-  }
 
   addProduct() {
+    if(this.latestProduct !== '')
+    {
     this.vendor.products.push({ name: this.latestProduct } as VendorProduct);
+    }
     this.latestProduct = null;
+    this.addText = "";
     console.log(this.vendor.products);
+  }
+
+  productChanged() {
+    this.addText = "Enter drücken, zum übernehmen.";
   }
 
   removeProduct(productName) {
