@@ -3,7 +3,7 @@ export interface Vendor {
   business: VendorBusiness;
   contactInfo: VendorContactInfo;
   products: VendorProduct[];
-  services: VendorService[];
+  services: VendorProvidedService[];
 }
 
 export interface VendorBusiness {
@@ -39,6 +39,6 @@ export interface VendorProduct {
   name: string;
 }
 
-export interface VendorService {
+export interface VendorProvidedService {
   name: string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorService, VendorSocialMedia } from 'src/app/models/vendor';
+import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorSocialMedia, VendorProvidedService } from 'src/app/models/vendor';
 import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
@@ -7,9 +7,6 @@ import { VendorService } from 'src/app/services/vendor.service';
   templateUrl: './register-store.page.html',
   styleUrls: ['./register-store.page.scss'],
 })
-
-
-
 export class RegisterStorePage implements OnInit {
 
   latestBranch = null;
@@ -19,6 +16,10 @@ export class RegisterStorePage implements OnInit {
   distance;
   instInput;
   vendor: Vendor;
+
+  constructor(vendorService: VendorService){
+
+  }
 
   ngOnInit() {
     this.vendor = {
@@ -36,7 +37,6 @@ export class RegisterStorePage implements OnInit {
 
     console.log(this.vendor);
     if (this.vendor !== null) {
-      //this.vendorService.createVendor(this.vendor)
     }
 
   }
@@ -82,7 +82,7 @@ export class RegisterStorePage implements OnInit {
   }
 
   buildServiceElement(serviceName): VendorProduct {
-    return {name: serviceName} as VendorService;
+    return {name: serviceName} as VendorProvidedService;
   }
 
 }
