@@ -11,7 +11,7 @@ export class VendorService implements IVendorService {
   constructor(private db: AngularFirestore) {}
 
   async allVendors(): Promise<Vendor> {
-    return await new Vendor('');
+    return await {} as Vendor;
   }
 
   async createVendor(vendor: IVendor): Promise<DocumentReference> {
