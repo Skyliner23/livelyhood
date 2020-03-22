@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Vendor } from 'src/app/models/vendor';
+import { EventEmitter } from 'events';
 @Component({
   selector: 'app-store-contact',
   templateUrl: './store-contact.component.html',
@@ -10,6 +12,11 @@ import { HttpClient } from '@angular/common/http';
 export class StoreContactComponent implements OnInit {
   distance;
   instaInput;
+
+
+  @Input() vendor: Vendor;
+  @Output() vendorCange =  new EventEmitter()
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {}

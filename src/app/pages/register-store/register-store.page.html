@@ -1,9 +1,9 @@
 <ion-content>
   <div class="store-container">
-    <form (ngSubmit)="submitProductsInfo()">
-    <app-store-contact></app-store-contact>
+    <form>
+    <app-store-contact [(ngModel)]="vendor"></app-store-contact>
     <app-store-products></app-store-products>
-    <button ion-button type="submit" block>Speichern</button>
+    <ion-button type="submit" (click)="this.registerNewVendor()" block>Speichern</ion-button>
   </form>
   </div>
 </ion-content>

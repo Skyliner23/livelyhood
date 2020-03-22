@@ -10,6 +10,7 @@ import { RegisterStorePage } from './register-store.page';
 import { StoreContactComponent } from './store-contact/store-contact.component';
 import { StoreProductsComponent } from './store-products/store-products.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterStorePage,
     StoreProductsComponent,
     StoreContactComponent
+  ],
+  providers: [
+    VendorService
   ]
 })
-export class RegisterStorePageModule {}
+export class RegisterStorePageModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VendorService } from 'src/app/services/vendor.service';
+import { Vendor } from 'src/app/models/vendor';
 
 @Component({
   selector: 'app-register-store',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterStorePage implements OnInit {
 
-  constructor() { }
+  vendor: Vendor = null;
+
+  constructor(private vendorService: VendorService) { }
 
   ngOnInit() {
+    
+  }
+
+  registerNewVendor(): void {
+    if(this.vendor !== null){
+      //this.vendorService.createVendor(this.vendor)
+    }
+    
   }
 
 }
