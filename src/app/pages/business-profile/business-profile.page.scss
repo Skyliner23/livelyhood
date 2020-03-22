@@ -1,3 +1,13 @@
 #chips {
     display: inline;
 }
+
+ion-col .img-col {
+    flex: 0 0 4px;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.description {
+    padding: 15px;
+}
