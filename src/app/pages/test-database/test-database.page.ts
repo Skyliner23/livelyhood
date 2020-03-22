@@ -28,6 +28,7 @@ export class TestDatabasePage implements OnInit {
   }
 
   update(vendor: Vendor) {
+    vendor.business.businessName = vendor.business.businessName + 'Update';
     this.vendorService.updateVendor(vendor);
   }
 

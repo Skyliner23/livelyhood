@@ -28,12 +28,14 @@ export class VendorService {
   }
 
   createVendor(vendor: Vendor) {
+    delete vendor.id;
     return this.db.collection('vendors').add(vendor);
   }
 
   updateVendor(vendor: Vendor) {
+    const id = vendor.id;
     delete vendor.id;
-    this.db.doc('vendors/' + vendor.id).update(vendor);
+    this.db.doc('vendors/' + id).update(vendor);
   }
 
   deleteVendor(vendorId: string) {

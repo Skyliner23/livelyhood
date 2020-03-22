@@ -10,10 +10,17 @@
       <tr *ngFor="let vendor of vendors">
         <td>{{vendor.business.businessName}}</td>
         <td>
-          <button (click)="delete(vendor.id)">Delete</button>
+          <ion-button expand="full" (click)="delete(vendor.id)">
+            Delete
+          </ion-button>
+        </td>
+        <td>
+          <ion-button expand="full" (click)="update(vendor)">
+            Update Vendor
+          </ion-button>
         </td>
       </tr>
     </tbody>
   </table>
-  <ion-button expand="full" (click)="create()">Full Button</ion-button>
+  <ion-button expand="full" (click)="create()">Create New Vendor</ion-button>
 </ion-content>
