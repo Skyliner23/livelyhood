@@ -1,4 +1,3 @@
-export class vendor {
-    constructor(name: string){
-    }
+export class Vendor {
+  constructor(public name: string) {}
 }
