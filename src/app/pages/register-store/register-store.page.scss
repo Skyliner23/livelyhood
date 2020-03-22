@@ -11,7 +11,6 @@
   text-align: center;
 }
 
-
 .image-wrap {
   padding: 10px;
   border: solid 1px #e0e0e0;
@@ -25,8 +24,7 @@
   height: auto;
   width: 200px;
   padding: 10px;
-  min-height:175px;
-  
+  min-height: 175px;
 }
 .img-space img {
   display: block;
@@ -52,7 +50,13 @@ img.storeimg:hover {
   cursor: pointer;
   filter: blur(2px);
 }
-.hoverblur:hover{
+.hoverblur:hover {
   cursor: pointer;
   filter: blur(2px);
+}
+
+ion-item-group {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: lightgrey;
 }
