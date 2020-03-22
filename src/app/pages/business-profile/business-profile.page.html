@@ -1,12 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{ vendor.business?.businessName }}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <h1>{{ vendor.business?.businessName }}</h1>
   <ion-grid>
     <ion-row>
+      <ion-col size="3">
+        <ion-img [src]="vendor.business?.profilePic"></ion-img>
+      </ion-col>
       <ion-col>
         <ion-label class="ion-text-wrap">
           Hier sind die Informationen zu dem Unternehmen {{ vendor.business?.businessDescription }}</ion-label>
@@ -15,16 +13,21 @@
           <ion-icon slot="start" name="mail-open-outline"></ion-icon>
         </ion-item>
         <ion-item>
-          <ion-label>{{vendor.contactInfo?.street}} {{vendor.contactInfo?.houseNumber}}</ion-label>
+          <ion-label>{{vendor.contactInfo?.street}} {{vendor.contactInfo?.houseNumber}}, {{vendor.contactInfo?.zipCode}} [TODO Stadtname fehltnoch im model]</ion-label>
           <ion-icon slot="start" name="business-outline"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{vendor.contactInfo?.telefone}}</ion-label>
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{vendor.contactInfo?.whatsApp}}</ion-label>
+          <ion-icon slot="start" name="logo-whatsapp"></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label>{{vendor.contactInfo?.website}}</ion-label>
           <ion-icon slot="start" name="earth-outline"></ion-icon>
         </ion-item>
-      </ion-col>
-      <ion-col size="3">
-        <ion-img [src]="vendor.business.profilePic"></ion-img>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -37,11 +40,11 @@
           -->
         </ion-list>
       </ion-col>
-      <ion-col>
-          <div id="chips" *ngFor="let b of vendor.business.branch">
+      <ion-col size="12">
+          <div id="chips" *ngFor="let branch of vendor.business?.branch">
             <ion-chip>
               <ion-icon name="pin"></ion-icon>
-              <ion-label>{{b}}</ion-label>
+              <ion-label>{{branch}}</ion-label>
             </ion-chip>
           </div>
       </ion-col>
