@@ -1,44 +1,51 @@
 <ion-content>
-  <div class="row" *ngIf="authError">
-    <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+  <div class="register-container">
+    <div class="row" *ngIf="authError">
+      <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+    </div>
+    <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
+      <h2>Neues Profil anlegen</h2>
+      <ion-item>
+        <ion-label>
+          Vorname
+        </ion-label>
+        <ion-input ngModel #firstname="ngModel" name="firstName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Nachname
+        </ion-label>
+        <ion-input ngModel #lastname="ngModel" name="lastName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Email
+        </ion-label>
+        <ion-input ngModel #email="ngModel" name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Passwort
+        </ion-label>
+        <ion-input ngModel #password="ngModel" name="password" type="password"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col class="submit-registration">
+          <ion-button type="submit">Registrieren</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="login-container">
+        <ion-col class="login-label">
+          <ion-label>Schon einen Account?</ion-label>
+        </ion-col>
+        <ion-col class="login-button">
+          <ion-button [routerLink]="['/login']">Einloggen</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
   </div>
-  <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
-    <h1>Register here</h1>
-    <ion-item>
-      <ion-label>
-        First Name
-      </ion-label>
-      <ion-input ngModel #firstname="ngModel" name="firstName"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>
-        Last Name
-      </ion-label>
-      <ion-input ngModel #lastname="ngModel" name="lastName"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>
-        Email
-      </ion-label>
-      <ion-input ngModel #email="ngModel" name="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>
-        Password
-      </ion-label>
-      <ion-input
-        ngModel
-        #password="ngModel"
-        name="password"
-        type="password"
-      ></ion-input>
-    </ion-item>
-    <ion-button type="submit">Register</ion-button>
-    <a>Already have an Account?</a>
-
-    <ion-button [routerLink]="['/login']">Go to Login</ion-button>
-  </form>
 </ion-content>

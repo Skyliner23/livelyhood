@@ -1,0 +1,32 @@
+.register-container {
+  margin: 4rem auto 6rem auto;
+  max-width: 50%;
+}
+
+.submit-registration {
+  width: 100%;
+  text-align: center;
+}
+
+.submit-registration-button {
+  margin: auto;
+}
+
+.login-label {
+  width: 50%;
+  text-align: right;
+}
+
+.login-label > ion-label {
+  display: block;
+  padding-top: 10px;
+}
+
+.login-button {
+  width: 50%;
+  text-align: left;
+}
+
+.login-container {
+  margin-top: 20px;
+}
