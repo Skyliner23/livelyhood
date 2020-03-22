@@ -36,7 +36,7 @@
   <div *ngIf="items$; let items; else loading">
     <ul>
       <li *ngFor="let item of items">
-        {{ item.business.businessName }}
+        {{ item.business.businessName }}; {{ item.contactInfo.zipCode }}
       </li>
     </ul>
     <div *ngIf="items.length === 0">No results, try clearing filters</div>
@@ -60,4 +60,8 @@
       <em>clear filter</em>
     </button>
   </div>
+
+  <p></p>
+  <p></p>
+  <p></p>
 </ion-content>

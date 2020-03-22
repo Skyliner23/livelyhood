@@ -57,22 +57,30 @@ export class VendorService {
     this.db.doc('vendors/' + vendorId).delete();
   }
 
-  getVendorsByZipCodeAndBranche(
+  getVendorsByZipCodeAndBranches(
     zipCode: BehaviorSubject<string | null>,
-    branche: BehaviorSubject<string | null>
+    branches: BehaviorSubject<string[] | null>
   ): Observable<Vendor[]> {
-    return combineLatest(zipCode, branche).pipe(
-      switchMap(([zipCodeFilter, brancheFilter]) =>
+    return combineLatest(zipCode, branches).pipe(
+      switchMap(([zipCodeFilter, branchesFilter]) =>
         this.db
           .collection('vendors', ref => {
             let query:
               | firebase.firestore.CollectionReference
               | firebase.firestore.Query = ref;
-            if (zipCodeFilter) {
-              query = query.where('contactInfo.zipCode', '==', zipCodeFilter);
+
+            if (branchesFilter) {
+              query = query.where(
+                'business.branches',
+                'array-contains-any',
+                branchesFilter
+              );
             }
-            if (brancheFilter) {
-              query = query.where('business.businessName', '==', brancheFilter);
+            if (zipCodeFilter) {
+              query = query
+                .orderBy('contactInfo.zipCode')
+                .startAt(zipCodeFilter)
+                .endAt(zipCodeFilter + '\uf8ff');
             }
             return query;
           })
