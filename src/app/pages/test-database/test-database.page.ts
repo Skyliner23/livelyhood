@@ -8,20 +8,36 @@ import { VendorService } from 'src/app/services/vendor.service';
   styleUrls: ['./test-database.page.scss'],
 })
 export class TestDatabasePage implements OnInit {
+  vendors: Vendor[];
   constructor(private vendorService: VendorService) {}
 
   async ngOnInit() {
-    console.log(
-      await this.vendorService.createVendor({
-        business: { businessName: 'TestBusiness' },
-        contactInfo: {},
-        products: [],
-        services: [],
-      } as Vendor)
-    );
-    // try {
-    // } catch (error) {
-    //   console.error(JSON.stringify(error));
-    // }
+    await this.vendorService
+      .getVendors()
+      .subscribe(data => (this.vendors = data));
+  }
+
+  create() {
+    const vendor = {
+      business: { businessName: 'TestBusiness' },
+      contactInfo: {},
+      products: [],
+      services: [],
+    } as Vendor;
+    this.vendorService.createVendor(vendor);
+  }
+
+  update(vendor: Vendor) {
+    vendor.business.businessName = vendor.business.businessName + 'Update';
+    this.vendorService.updateVendor(vendor);
+  }
+
+  delete(id: string) {
+    this.vendorService.deleteVendor(id);
+  }
+
+  async vendorById(id: string) {
+    const vendor = await this.vendorService.getVendorById(id);
+    console.log(vendor);
   }
 }

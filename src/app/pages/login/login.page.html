@@ -1,27 +1,36 @@
 <ion-content>
-  <div class="row" *ngIf="authError">
-    <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
-  </div>
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-    <ion-item>
-      <ion-label>
-        Email
-      </ion-label>
-      <ion-input ngModel #email="ngModel" name="email"></ion-input>
-    </ion-item>
+  <div class="login-container">
+    <div class="row" *ngIf="authError">
+      <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <ion-item>
+        <ion-label>
+          Email
+        </ion-label>
+        <ion-input ngModel #email="ngModel" name="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>
-        Password
-      </ion-label>
-      <ion-input
-        ngModel
-        #password="ngModel"
-        name="password"
-        type="password"
-      ></ion-input>
-    </ion-item>
-    <ion-button type="submit">Login</ion-button>
-    <ion-button [routerLink]="['/register']">Register</ion-button>
-  </form>
+      <ion-item>
+        <ion-label>
+          Password
+        </ion-label>
+        <ion-input ngModel #password="ngModel" name="password" type="password"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col class="submit-login">
+          <ion-button type="submit">Login</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="register-container">
+        <ion-col class="register-label">
+          <ion-label>Noch keinen Account?</ion-label>
+        </ion-col>
+        <ion-col class="register-button">
+          <ion-button [routerLink]="['/register']">Registrieren</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
 </ion-content>
