@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  DocumentReference,
-  QuerySnapshot,
-} from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Vendor } from '../models/vendor';
 
 @Injectable({
@@ -12,14 +9,54 @@ import { Vendor } from '../models/vendor';
 export class VendorService {
   constructor(private db: AngularFirestore) {}
 
-  async allVendors(): Promise<QuerySnapshot<any>> {
-    return await this.db
-      .collection('vendors')
-      .get()
-      .toPromise();
+  getVendors(): Observable<Vendor[]> {
+    return Observable.create(observer => {
+      this.db
+        .collection('vendors')
+        .snapshotChanges()
+        .subscribe(result => {
+          observer.next(
+            result.map(e => {
+              return {
+                id: e.payload.doc.id,
+                ...e.payload.doc.data(),
+              } as Vendor;
+            })
+          );
+        });
+    });
   }
 
-  async createVendor(vendor: Vendor): Promise<DocumentReference> {
-    return await this.db.collection('vendors').add({ ...vendor });
+  createVendor(vendor: Vendor) {
+    return this.db.collection('vendors').add(vendor);
+  }
+
+  updateVendor(vendor: Vendor) {
+    delete vendor.id;
+    this.db.doc('vendors/' + vendor.id).update(vendor);
+  }
+
+  deleteVendor(vendorId: string) {
+    this.db.doc('vendors/' + vendorId).delete();
+  }
+
+  getVendorsForZipCode(zipCode: string): Observable<Vendor[]> {
+    return Observable.create(observer => {
+      this.db
+        .collection('vendors', ref =>
+          ref.where('business.contactInfo.zipCode', '==', zipCode)
+        )
+        .snapshotChanges()
+        .subscribe(result => {
+          observer.next(
+            result.map(e => {
+              return {
+                id: e.payload.doc.id,
+                ...e.payload.doc.data(),
+              } as Vendor;
+            })
+          );
+        });
+    });
   }
 }
