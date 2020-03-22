@@ -16,14 +16,15 @@
                     </div>
                     <ion-label position="stacked" color="danger" >{{this.imageError}}</ion-label>
     </ion-item>
-    <ion-item >
-      <ion-label position="stacked">Eine kurze Beschreibung von dir und deiner Person:</ion-label><br>
-      <ion-textarea required="true" rows="5"  placeholder="Stelle dich hier in 2 Sätzen vor :) ..." name="vendorDesc" [(ngModel)]="vendor.business.businessDescription"></ion-textarea>
-    </ion-item>
     <ion-item>
       <ion-label>Name deines Ladens: </ion-label>
     <ion-input required="true" value="" name="vendorName" [(ngModel)]="vendor.business.businessName"></ion-input>
     </ion-item>
+    <ion-item >
+      <ion-label position="stacked">Eine kurze Beschreibung von dir und deiner Person:</ion-label><br>
+      <ion-textarea required="true" rows="5"  placeholder="Stelle dich hier in 2 Sätzen vor :) ..." name="vendorDesc" [(ngModel)]="vendor.business.businessDescription"></ion-textarea>
+    </ion-item>
+    
   <ion-item> 
     <ion-label>Straße deines Ladens: </ion-label>
     <ion-input required="true" value="" name="vendorStreet" [(ngModel)]="vendor.contactInfo.street"></ion-input>
@@ -82,13 +83,13 @@
     <ion-label>Dein Ebay-Kleinanzeigen-Account: </ion-label>
     <ion-input value="" debounce="1000" name="vendorebay" [(ngModel)]="vendor.contactInfo.socialMedia.ebay"></ion-input>
   </ion-item>
-  <ion-item> 
+  <!--<ion-item> 
     <ion-label>Dein Lieferando-Account: </ion-label>
     <ion-input value="" debounce="1000" ></ion-input>
-  </ion-item>
+  </ion-item>-->
   <ion-item> 
     <ion-label>Eine Andere Platform: </ion-label>
-    <ion-input value="" debounce="1000" ></ion-input>
+    <ion-input value="" debounce="1000" name="vendorother" [(ngModel)]="vendor.contactInfo.socialMedia.other" ></ion-input>
   </ion-item>
   <!--
   <ion-item>

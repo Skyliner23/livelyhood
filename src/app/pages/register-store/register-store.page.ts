@@ -125,14 +125,14 @@ export class RegisterStorePage implements OnInit {
 
       if (fileInput.target.files[0].size > max_size) {
         this.imageError =
-          'Maximum size allowed is ' + max_size / 1024 / 1024 + 'Mb';
+          'Die maximale Dateigröße beträgt ' + max_size / 1024 / 1024 + 'Mb.';
 
         return false;
       }
       console.log(fileInput.target.files[0].type);
       const file_type = fileInput.target.files[0].type;
       if (allowed_types.findIndex(t => file_type === t) === -1) {
-        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        this.imageError = 'Es können nur Bilder hochgeladen werden ( JPG | PNG ).';
         return false;
       }
       const reader = new FileReader();
