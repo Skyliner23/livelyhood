@@ -1,9 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>business-profile</ion-title>
+    <ion-title>{{ vendor.business?.businessName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-label>Hier sind die Informationen zu dem Unternehmen {{ company }}</ion-label>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label class="ion-text-wrap">
+          Hier sind die Informationen zu dem Unternehmen {{ vendor.business?.businessDescription }}</ion-label>
+        <ion-item>
+          <ion-label>{{vendor.contactInfo?.email}}</ion-label>
+          <ion-icon slot="start" name="mail-open-outline"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{vendor.contactInfo?.street}} {{vendor.contactInfo?.houseNumber}}</ion-label>
+          <ion-icon slot="start" name="business-outline"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{vendor.contactInfo?.website}}</ion-label>
+          <ion-icon slot="start" name="earth-outline"></ion-icon>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-img [src]="vendor.business.profilePic"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <!--
+          <ion-item *ngFor="let i of vendor.....">
+
+          </ion-item>
+          -->
+        </ion-list>
+      </ion-col>
+      <ion-col>
+          <div id="chips" *ngFor="let b of vendor.business.branch">
+            <ion-chip>
+              <ion-icon name="pin"></ion-icon>
+              <ion-label>{{b}}</ion-label>
+            </ion-chip>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
