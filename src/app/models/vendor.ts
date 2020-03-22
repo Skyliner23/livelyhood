@@ -1,5 +1,5 @@
 export interface Vendor {
-  id: string;
+  id?: string;
   business: VendorBusiness;
   contactInfo: VendorContactInfo;
   products: VendorProduct[];
