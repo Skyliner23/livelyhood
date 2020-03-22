@@ -117,3 +117,13 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.main-content-wrapper {
+  margin: 3.5rem 2rem 6rem 2rem;
+  width: 90%;
+}
+
+.center{
+  display: block;
+  margin: auto;
+}
