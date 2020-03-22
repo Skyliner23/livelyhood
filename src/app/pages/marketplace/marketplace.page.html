@@ -28,7 +28,7 @@
       <ion-col size="4" *ngFor="let vendor of vendors">
         <ion-card (click)="openProfile(vendor.id)">
           <ng-container *ngIf="vendor.business && vendor.business.profilePic; else elseTemplate">
-            <ion-img [src]="vendor?.business?.profilePic"></ion-img>
+            <img [src]="vendor?.business?.profilePic" />
           </ng-container>
           <ng-template #elseTemplate>
             <img src="assets/bakery.jpg" />
