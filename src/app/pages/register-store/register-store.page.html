@@ -25,8 +25,6 @@
         <ion-textarea required="true" rows="5" placeholder="Stelle dich hier in 2 Sätzen vor :) ..." name="vendorDesc"
           [(ngModel)]="vendor.business.businessDescription"></ion-textarea>
       </ion-item>
-
-
       <ion-item-group>
         <ion-item-divider>
           <ion-label>Adresse</ion-label>
@@ -122,26 +120,28 @@
           </ion-input>
         </ion-item>
       </ion-item-group>
-
-      <!--
-  <ion-item>
-    <ion-label>Deine Branche:</ion-label>
-    <ion-input type="text" (keyup.enter)="addBranch()" [(ngModel)]="latestBranch" name="latestBranch"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-chip class="branch-badge" item-end *ngFor="let branchName of vendor.products" (click)="removeBranch(branchName)">
-      {{branchName}}<ion-icon name="close-circle"></ion-icon></ion-chip>
-  </ion-item>
--->
+      
       <ion-item-group>
         <ion-item-divider>
           <ion-label>Angebote und Services</ion-label>
         </ion-item-divider>
+       
         <ion-item>
-          <ion-label>Deine Produkte:</ion-label>
-          <ion-input type="text" (keyup.enter)="addProduct()" [(ngModel)]="latestProduct" name="latestProduct">
+          <ion-label>Deine Branche/Produkte:</ion-label>
+          <ion-item>
+            <ion-chip color="secondary" (click)="addBranch('Lebensmittel')" >Lebensmittel</ion-chip>
+            <ion-chip color="primary" (click)="addBranch('Bäckerei')">Bäckerei</ion-chip>
+            <ion-chip color="dark" (click)="addBranch('Kultur')">Kultur</ion-chip>
+            <ion-chip color="danger" (click)="addBranch('Bar')">Bar</ion-chip>
+            <ion-chip color="tertiary" (click)="addBranch('Café')">Café</ion-chip>
+            <ion-chip color="warning" (click)="addBranch('Dienstleistungen')">Dienstleistungen</ion-chip>
+            <ion-chip (click)="addBranch('Einzelhandel')">Einzelhandel</ion-chip>
+          </ion-item>
+          <ion-input type="text" (keyup.enter)="addProduct()" debounce="0" (ionChange)="productChanged()" [(ngModel)]="latestProduct" name="latestProduct" placeholder="Sonstige">
           </ion-input>
+          
         </ion-item>
+        <ion-label position="stacked" color="warning">{{this.addText}}</ion-label>
         <ion-item>
           <ion-chip class="branch-badge" item-end *ngFor="let product of vendor.products"
             (click)="removeProduct(product.name)">
