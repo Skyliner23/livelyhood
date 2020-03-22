@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vendor, VendorBusiness, VendorContactInfo, VendorProduct, VendorSocialMedia, VendorProvidedService } from 'src/app/models/vendor';
 import { VendorService } from 'src/app/services/vendor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-store',
@@ -21,7 +22,8 @@ export class RegisterStorePage implements OnInit {
   instInput;
   vendor: Vendor;
 
-  constructor(private vendorService: VendorService) {
+  constructor(private vendorService: VendorService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -33,7 +35,12 @@ export class RegisterStorePage implements OnInit {
     console.log(this.vendor);
     if (!this.isEmptyVendor()) {
       console.log('saving to database')
-      this.vendorService.createVendor(this.vendor)
+      this.vendorService
+        .createVendor(this.vendor)
+        .then(vendorId => {
+          console.log('')
+          this.router.navigateByUrl(`search/${vendorId}`);
+        });
     }
 
   }
@@ -110,59 +117,59 @@ export class RegisterStorePage implements OnInit {
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
-        // Size Filter Bytes
-        const max_size = 20971520;
-        const allowed_types = ['image/png', 'image/jpeg'];
-        const max_height = 15200;
-        const max_width = 25600;
+      // Size Filter Bytes
+      const max_size = 4194304;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
 
-        if (fileInput.target.files[0].size > max_size) {
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Die maximale Dateigröße beträgt ' + max_size / 1024 / 1024 + 'Mb.';
+
+        return false;
+      }
+      console.log(fileInput.target.files[0].type);
+      const file_type = fileInput.target.files[0].type;
+      if (allowed_types.findIndex(t => file_type === t) === -1) {
+        this.imageError = 'Es können nur Bilder hochgeladen werden ( JPG | PNG ).';
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          console.log(img_height, img_width);
+
+
+          if (img_height > max_height && img_width > max_width) {
             this.imageError =
-                'Maximum size allowed is ' + max_size / 1000 + 'Mb';
-
+              'Maximum dimentions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
             return false;
-        }
-        console.log(fileInput.target.files[0].type);
-        const file_type= fileInput.target.files[0].type;
-        if (allowed_types.findIndex(t=>file_type === t) === -1) {
-            this.imageError = 'Only Images are allowed ( JPG | PNG )';
-            return false;
-        }
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = rs => {
-                const img_height = rs.currentTarget['height'];
-                const img_width = rs.currentTarget['width'];
-
-                console.log(img_height, img_width);
-
-
-                if (img_height > max_height && img_width > max_width) {
-                    this.imageError =
-                        'Maximum dimentions allowed ' +
-                        max_height +
-                        '*' +
-                        max_width +
-                        'px';
-                    return false;
-                } else {
-                    const imgBase64Path = e.target.result;
-                    this.cardImageBase64 = imgBase64Path;
-                    this.isImageSaved = true;
-                    // this.previewImagePath = imgBase64Path;
-                }
-            };
+          } else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            this.isImageSaved = true;
+            // this.previewImagePath = imgBase64Path;
+          }
         };
+      };
 
-        reader.readAsDataURL(fileInput.target.files[0]);
+      reader.readAsDataURL(fileInput.target.files[0]);
     }
-}
+  }
 
-removeImage() {
+  removeImage() {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
-}
+  }
 
 }

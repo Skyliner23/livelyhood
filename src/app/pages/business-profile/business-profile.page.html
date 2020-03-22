@@ -1,3 +1,9 @@
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
 <ion-content>
   <h1>{{ vendor.business?.businessName }}</h1>
   <ion-grid>
@@ -50,6 +56,9 @@
             </ion-chip>
           </div>
       </ion-col>
+      <ion-col size="3">
+        <div *ngIf="instaHtml" [innerHTML]='instaHtml | keepHtml'></div>
+        </ion-col>
     </ion-row>
   </ion-grid>
 

@@ -8,6 +8,8 @@ import { BusinessProfilePageRoutingModule } from './business-profile-routing.mod
 
 import { BusinessProfilePage } from './business-profile.page';
 
+import { KeepHtmlPipe } from './pipes/keephtml.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { BusinessProfilePage } from './business-profile.page';
     IonicModule,
     BusinessProfilePageRoutingModule
   ],
-  declarations: [BusinessProfilePage]
+  declarations: [BusinessProfilePage, KeepHtmlPipe]
 })
 export class BusinessProfilePageModule{}
