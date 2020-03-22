@@ -158,6 +158,7 @@ export class RegisterStorePage implements OnInit {
             const imgBase64Path = e.target.result;
             this.cardImageBase64 = imgBase64Path;
             this.isImageSaved = true;
+            this.vendor.business.profilePic = this.cardImageBase64;
             // this.previewImagePath = imgBase64Path;
           }
         };
@@ -165,6 +166,7 @@ export class RegisterStorePage implements OnInit {
 
       reader.readAsDataURL(fileInput.target.files[0]);
     }
+    
   }
 
   removeImage() {
