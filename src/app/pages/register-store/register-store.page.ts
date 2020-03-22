@@ -118,21 +118,21 @@ export class RegisterStorePage implements OnInit {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
-      const max_size = 20971520;
+      const max_size = 4194304;
       const allowed_types = ['image/png', 'image/jpeg'];
       const max_height = 15200;
       const max_width = 25600;
 
       if (fileInput.target.files[0].size > max_size) {
         this.imageError =
-          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+          'Die maximale Dateigröße beträgt ' + max_size / 1024 / 1024 + 'Mb.';
 
         return false;
       }
       console.log(fileInput.target.files[0].type);
       const file_type = fileInput.target.files[0].type;
       if (allowed_types.findIndex(t => file_type === t) === -1) {
-        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        this.imageError = 'Es können nur Bilder hochgeladen werden ( JPG | PNG ).';
         return false;
       }
       const reader = new FileReader();
