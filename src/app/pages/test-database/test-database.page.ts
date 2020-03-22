@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 import { Vendor } from 'src/app/models/vendor';
 import { VendorService } from 'src/app/services/vendor.service';
+
+export interface Item {
+  text: string;
+  color: string;
+  size: string;
+}
 
 @Component({
   selector: 'app-test-database',
@@ -8,13 +16,44 @@ import { VendorService } from 'src/app/services/vendor.service';
   styleUrls: ['./test-database.page.scss'],
 })
 export class TestDatabasePage implements OnInit {
+  items$: Vendor[];
+  sizeFilter$: BehaviorSubject<string | null>;
+  colorFilter$: BehaviorSubject<string | null>;
+
   vendors: Vendor[];
-  constructor(private vendorService: VendorService) {}
+  constructor(
+    private vendorService: VendorService,
+    private afs: AngularFirestore
+  ) {
+    this.sizeFilter$ = new BehaviorSubject(null);
+    this.colorFilter$ = new BehaviorSubject(null);
+    this.vendorService
+      .getVendorsByZipCodeAndBranche(this.sizeFilter$, this.colorFilter$)
+      .subscribe(data => {
+        this.items$ = data;
+        console.log('DATEN!!');
+      });
+  }
 
   async ngOnInit() {
     await this.vendorService
       .getVendors()
       .subscribe(data => (this.vendors = data));
+  }
+
+  filterBySize(size: string | null) {
+    if (size) {
+      this.sizeFilter$.next('3');
+    } else {
+      this.sizeFilter$.next(size);
+    }
+  }
+  filterByColor(color: string | null) {
+    if (color) {
+      this.colorFilter$.next('Test');
+    } else {
+      this.colorFilter$.next(color);
+    }
   }
 
   create() {

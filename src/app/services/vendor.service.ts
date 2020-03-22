@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Vendor } from '../models/vendor';
 
 @Injectable({
@@ -54,6 +55,30 @@ export class VendorService {
 
   deleteVendor(vendorId: string) {
     this.db.doc('vendors/' + vendorId).delete();
+  }
+
+  getVendorsByZipCodeAndBranche(
+    zipCode: BehaviorSubject<string | null>,
+    branche: BehaviorSubject<string | null>
+  ): Observable<Vendor[]> {
+    return combineLatest(zipCode, branche).pipe(
+      switchMap(([zipCodeFilter, brancheFilter]) =>
+        this.db
+          .collection('vendors', ref => {
+            let query:
+              | firebase.firestore.CollectionReference
+              | firebase.firestore.Query = ref;
+            if (zipCodeFilter) {
+              query = query.where('contactInfo.zipCode', '==', zipCodeFilter);
+            }
+            if (brancheFilter) {
+              query = query.where('business.businessName', '==', brancheFilter);
+            }
+            return query;
+          })
+          .valueChanges()
+      )
+    ) as Observable<Vendor[]>;
   }
 
   getVendorsForZipCode(zipCode: string): Observable<Vendor[]> {
